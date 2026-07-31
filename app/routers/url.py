@@ -38,7 +38,7 @@ def redirect_to_original(request: Request, short_code: str, db: Session = Depend
 
 @router.get("/{short_code}/stats", response_model=URLResponse)
 @limiter.limit("60/minute")
-def get_url_stats(short_code: str, db: Session = Depends(get_db)):
+def get_url_stats(requset: Request, short_code: str, db: Session = Depends(get_db)):
     url_entry = get_url_by_short_code(db, short_code)
 
     if url_entry is None:
