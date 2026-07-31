@@ -121,6 +121,26 @@ uvicorn app.main:app --reload
 A aplicação estará disponível em `http://127.0.0.1:8000`.
 A documentação interativa (Swagger) fica em `http://127.0.0.1:8000/docs`.
 
+## Testes
+
+O projeto possui testes automatizados desenvolvidos com `pytest`.
+
+Para executar toda a suíte de testes:
+
+```bash
+pytest -v
+```
+
+A cobertura atual valida:
+
+- geração de códigos curtos em base62;
+- criação e persistência de URLs;
+- tratamento de URLs duplicadas;
+- redirecionamento para a URL original;
+- atualização do contador de cliques;
+- consulta de estatísticas da URL;
+- respostas `404 Not Found` para códigos curtos inexistentes.
+
 ## Endpoints da API
 
 > 💡 Para explorar interativamente todos os endpoints, com a
