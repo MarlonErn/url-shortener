@@ -34,6 +34,15 @@ identificador inicial do banco para garantir um tamanho mínimo de
 caracteres desde o primeiro registro (detalhado na seção
 "Decisões Técnicas").
 
+## Sobre o Desenvolvimento
+
+Este projeto foi desenvolvido em aproximadamente 3h30min a 4h30min de
+trabalho efetivo, distribuídas ao longo de 3 dias. Uma IA (Claude)
+foi utilizada como apoio de estudo, orientando as etapas técnicas e
+explicando os conceitos envolvidos — porém, todo o código foi
+digitado manualmente, garantindo melhor compreensão do projeto e
+validação prática de cada etapa do desenvolvimento.
+
 ## Stack Utilizada
 
 - **Python 3.14.3** — linguagem principal do projeto

@@ -35,6 +35,12 @@ adjustment to the database's initial identifier to guarantee a
 minimum character length from the very first record (detailed in the
 "Technical Decisions" section).
 
+## About the Development
+
+This project was built in approximately 3.5 to 4.5 hours of effective
+work, spread across 3 days, with AI assistance (Claude) for technical
+guidance, code review, and troubleshooting throughout the process.
+
 ## Tech Stack
 
 - **Python 3.14.3** — main language of the project
