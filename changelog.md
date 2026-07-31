@@ -6,7 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### 2026-07-31
+- `fix`: fix missing `Request` parameter on the stats endpoint, required for rate limiting
+- `feat`: add rate limiting to API endpoints, with documentation of the chosen limits
+- `deploy`: application deployed to production on Render
+- `docs`: update changelog
+
 ### 2026-07-30
+- `docs`: update documentation
+- `feat`: add URL stats endpoint and centralize short_code lookup in the service layer
+- `test`: add automated tests for base62 encoding and URL creation service
 - `docs`: add updated requirements file
 - `docs`: add project documentation in English and Portuguese (README)
 - `feat`: add shorten and redirect endpoints (`POST /shorten`, `GET /{short_code}`)
