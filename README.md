@@ -261,14 +261,14 @@ strategy that avoids the intermediate state — for example, reserving
 the `id` before the full insert, or using a single transaction with
 code generation independent of the database's auto-increment.
 
-### No duplicate URL check
+### ~~No duplicate URL check
 
 Currently, the system doesn't check whether an `original_url` has
 already been shortened before — every call to `POST /shorten` always
 creates a new record and a new code, even if the destination URL is
 identical to an existing one. A future improvement would be to query
 the database before creation and reuse the already-generated code,
-when applicable.
+when applicable.~~
 
 ### Local database environment
 
