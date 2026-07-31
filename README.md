@@ -140,7 +140,12 @@ Creates a new shortened URL.
 }
 ```
 
-**Response (200):**
+**Responses:**
+
+- **201 Created:** a new short URL was created.
+- **200 OK:** the submitted URL was already registered; the existing short URL is returned.
+
+Both responses use the same body:
 ```json
 {
   "short_code": "baaaa",
@@ -161,6 +166,31 @@ Redirects to the original URL matching the given code, and increments the click 
 **Behavior:**
 - If the `short_code` exists → redirects (`302`) to the `original_url`
 - If it doesn't exist → returns `404` with an error message
+
+**Response (404, when not found):**
+```json
+{
+  "detail": "Short URL not found"
+}
+```
+
+---
+
+### `GET /{short_code}/stats`
+
+Returns URL details without redirecting or incrementing the click counter.
+
+**Example:** `GET /baaaa/stats`
+
+**Response (200):**
+```json
+{
+  "short_code": "baaaa",
+  "original_url": "https://www.example.com/page",
+  "created_at": "2026-07-29T23:50:00",
+  "clicks": 12
+}
+```
 
 **Response (404, when not found):**
 ```json

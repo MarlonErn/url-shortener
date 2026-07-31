@@ -139,7 +139,12 @@ Cria uma nova URL encurtada.
 }
 ```
 
-**Response (200):**
+**Responses:**
+
+- **201 Created:** um novo URL encurtado foi gerado.
+- **200 OK:** URL já registrado com endereço curto. URL encurtado existente na resposta.
+
+Ambas respostas têm a mesma estrutura:
 ```json
 {
   "short_code": "baaaa",
@@ -160,6 +165,31 @@ Redireciona para a URL original correspondente ao código informado, e increment
 **Comportamento:**
 - Se o `short_code` existir → redireciona (`302`) para a `original_url`
 - Se não existir → retorna `404` com mensagem de erro
+
+**Response (404, quando não encontrado):**
+```json
+{
+  "detail": "Short URL not found"
+}
+```
+
+---
+
+### `GET /{short_code}/stats`
+
+Retorna os detalhes da URL sem redirecionamento ou incremento no contador de cliques.
+
+**Exemplo:** `GET /baaaa/stats`
+
+**Response (200):**
+```json
+{
+  "short_code": "baaaa",
+  "original_url": "https://www.example.com/page",
+  "created_at": "2026-07-29T23:50:00",
+  "clicks": 12
+}
+```
 
 **Response (404, quando não encontrado):**
 ```json
