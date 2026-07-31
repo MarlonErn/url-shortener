@@ -28,3 +28,9 @@ def create_short_url(db: Session, original_url: str):
     db.refresh(new_url)
 
     return new_url
+
+
+def get_url_by_short_code(db: Session, short_code: str) -> URL | None:
+    url_entry = db.query(URL).filter(URL.short_code == short_code).first()
+
+    return url_entry
