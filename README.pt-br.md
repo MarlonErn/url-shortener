@@ -282,7 +282,7 @@ que é uma configuração específica desse dialeto.
 
 - [x] Adicionar testes automatizados (pytest), cobrindo a lógica de
       codificação base62 e o fluxo de criação de URLs
-- [ ] Implementar verificação de URLs duplicadas antes da criação
+- [x] Implementar verificação de URLs duplicadas antes da criação
 - [x] Adicionar endpoint `GET /{short_code}/stats`, retornando os
       dados da URL (incluindo cliques) sem disparar o redirecionamento
 - [ ] Migrar o banco de dados para PostgreSQL em ambiente de produção

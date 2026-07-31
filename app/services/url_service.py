@@ -34,3 +34,9 @@ def get_url_by_short_code(db: Session, short_code: str) -> URL | None:
     url_entry = db.query(URL).filter(URL.short_code == short_code).first()
 
     return url_entry
+
+
+def get_url_by_original_url(db: Session, original_url: str) -> URL | None:
+    url_entry = db.query(URL).filter(URL.original_url == original_url).first()
+
+    return url_entry

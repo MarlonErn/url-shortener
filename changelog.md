@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `feat`: add rate limiting to API endpoints, with documentation of the chosen limits
 - `deploy`: application deployed to production on Render
 - `docs`: update changelog
+- `feat`: add duplicate URL checking before creation
 
 ### 2026-07-30
 - `docs`: update documentation

@@ -38,8 +38,10 @@ minimum character length from the very first record (detailed in the
 ## About the Development
 
 This project was built in approximately 3.5 to 4.5 hours of effective
-work, spread across 3 days, with AI assistance (Claude) for technical
-guidance, code review, and troubleshooting throughout the process.
+work, spread across 3 days. An AI (Claude) was used as a study aid,
+guiding the technical steps and explaining the concepts involved —
+however, all code was typed manually, ensuring a better understanding
+of the project and hands-on validation of every development step.
 
 ## Tech Stack
 
@@ -280,7 +282,7 @@ dialect-specific configuration.
 
 - [x] Add automated tests (pytest), covering the base62 encoding logic
       and the URL creation flow
-- [ ] Implement duplicate URL checking before creation
+- [x] Implement duplicate URL checking before creation
 - [x] Add a `GET /{short_code}/stats` endpoint, returning the URL's
       data (including clicks) without triggering the redirect
 - [ ] Migrate the database to PostgreSQL for the production environment
