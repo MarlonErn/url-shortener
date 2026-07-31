@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
@@ -6,18 +6,25 @@ from app.database import get_db
 from app.schemas import URLCreate, URLResponse
 from app.services.url_service import create_short_url, get_url_by_short_code
 
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
 
 router = APIRouter()
 
+# Same key function (client IP) used by the main limiter in main.py
+limiter = Limiter(key_func=get_remote_address)
 
 @router.post("/shorten", response_model=URLResponse)
-def shorten_url(payload: URLCreate, db: Session = Depends(get_db)):
+@limiter.limit("10/minute")
+def shorten_url(request: Request, payload: URLCreate, db: Session = Depends(get_db)):
     new_url = create_short_url(db, str(payload.original_url))
     return new_url
 
 
 @router.get("/{short_code}")
-def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
+@limiter.limit("60/minute")
+def redirect_to_original(request: Request, short_code: str, db: Session = Depends(get_db)):
     url_entry = get_url_by_short_code(db, short_code)
 
     if url_entry is None:
@@ -30,6 +37,7 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
 
 
 @router.get("/{short_code}/stats", response_model=URLResponse)
+@limiter.limit("60/minute")
 def get_url_stats(short_code: str, db: Session = Depends(get_db)):
     url_entry = get_url_by_short_code(db, short_code)
 

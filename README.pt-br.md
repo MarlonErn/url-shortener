@@ -4,6 +4,19 @@
 
 *Criado por Marlon Ern — [Linkedin](https://www.linkedin.com/in/marlon-ern-731bb1102/) · [Github](https://github.com/MarlonErn)*
 
+## Demonstração ao Vivo
+
+A aplicação está disponível em produção:
+🔗 https://url-shortener-8ret.onrender.com
+
+Documentação interativa (Swagger): https://url-shortener-8ret.onrender.com/docs
+
+> ⚠️ Hospedado no free tier do Render — o serviço "dorme" após
+> período de inatividade (o primeiro acesso pode demorar alguns
+> segundos para responder) e os dados são reiniciados a cada
+> reinicialização do serviço, já que o ambiente gratuito não
+> possui disco persistente.
+
 ## Sobre
 Uma API REST de encurtamento de URLs, construída como projeto de
 estudo para portfólio técnico. O sistema recebe uma URL longa, gera
@@ -194,6 +207,31 @@ Por padrão, o SQLite não mantém uma tabela de controle de sequência
 (`sqlite_sequence`) a menos que a coluna seja declarada explicitamente
 com `AUTOINCREMENT`. Essa configuração foi necessária para permitir o
 ajuste manual do valor inicial da sequência, descrito acima.
+
+### Rate limiting nos endpoints
+
+Para proteger a API contra abuso e uso excessivo, foi adotada a
+biblioteca `slowapi`, que identifica cada cliente pelo endereço IP e
+aplica limites de requisições por minuto.
+
+Os limites foram calibrados de forma diferente por tipo de endpoint:
+
+- **`POST /shorten`**: limite de `10/minuto`. Como a criação de URLs
+  é uma ação pouco frequente para um usuário legítimo, um limite
+  mais restritivo aqui não prejudica o uso normal, enquanto reduz o
+  risco de criação em massa de registros (cada chamada realiza duas
+  transações no banco, tornando esse endpoint o mais custoso do
+  sistema).
+- **`GET /{short_code}` e `GET /{short_code}/stats`**: limite de
+  `60/minuto`. Um limite mais permissivo é necessário aqui, já que
+  redirecionamento é o propósito central do produto — um link
+  popular pode receber um volume alto e legítimo de acessos em pouco
+  tempo, e um limite muito restritivo bloquearia usuários reais.
+
+É importante notar que o limite é aplicado por IP e por rota, não
+por `short_code` específico — ou seja, ele protege contra um mesmo
+cliente sobrecarregando o servidor, mas não limita quantas vezes um
+link individual pode ser acessado no total.
 
 ## Limitações Conhecidas
 

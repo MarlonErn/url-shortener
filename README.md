@@ -4,6 +4,18 @@
 
 *Created by Marlon Ern — [LinkedIn](https://www.linkedin.com/in/marlon-ern-731bb1102/) · [GitHub](https://github.com/MarlonErn)*
 
+## Live Demo
+
+The application is available in production:
+🔗 https://url-shortener-8ret.onrender.com
+
+Interactive documentation (Swagger): https://url-shortener-8ret.onrender.com/docs
+
+> ⚠️ Hosted on Render's free tier — the service "goes to sleep" after
+> a period of inactivity (the initial request may take a few
+> seconds to respond), and data is reset whenever the service
+> restarts, as the free environment lacks persistent storage.
+
 ## About
 
 A URL shortening REST API, built as a study project for a technical
@@ -198,6 +210,30 @@ By default, SQLite doesn't maintain a sequence control table
 (`sqlite_sequence`) unless the column is explicitly declared with
 `AUTOINCREMENT`. This configuration was required to allow the manual
 adjustment of the sequence's initial value, described above.
+
+### Rate limiting on endpoints
+
+To protect the API against abuse and excessive use, the `slowapi`
+library was adopted, identifying each client by IP address and
+applying per-minute request limits.
+
+Limits were calibrated differently depending on the endpoint type:
+
+- **`POST /shorten`**: limited to `10/minute`. Since creating URLs
+  is an infrequent action for a legitimate user, a stricter limit
+  here doesn't hurt normal usage, while reducing the risk of mass
+  record creation (each call performs two database transactions,
+  making this the most expensive endpoint in the system).
+- **`GET /{short_code}` and `GET /{short_code}/stats`**: limited to
+  `60/minute`. A more permissive limit is necessary here, since
+  redirection is the product's core purpose — a popular link may
+  receive a high, legitimate volume of accesses in a short time, and
+  an overly strict limit would block real users.
+
+It's worth noting that the limit is applied per IP and per route,
+not per specific `short_code` — meaning it protects against a single
+client overloading the server, but does not limit how many times an
+individual link can be accessed in total.
 
 ## Known Limitations
 
