@@ -271,12 +271,12 @@ que é uma configuração específica desse dialeto.
 
 ## Próximos Passos
 
-- [ ] Adicionar testes automatizados (pytest), cobrindo a lógica de
+- [x] Adicionar testes automatizados (pytest), cobrindo a lógica de
       codificação base62 e o fluxo de criação de URLs
 - [ ] Implementar verificação de URLs duplicadas antes da criação
-- [ ] Adicionar endpoint `GET /{short_code}/stats`, retornando os
+- [x] Adicionar endpoint `GET /{short_code}/stats`, retornando os
       dados da URL (incluindo cliques) sem disparar o redirecionamento
 - [ ] Migrar o banco de dados para PostgreSQL em ambiente de produção
-- [ ] Deploy da aplicação (Render/Railway) com link público de demonstração
-- [ ] Adicionar rate limiting básico para proteger o endpoint de criação
+- [x] Deploy da aplicação (Render) com link público de demonstração
+- [x] Adicionar rate limiting básico para proteger o endpoint de criação
       contra abuso e/ou uso excessivo

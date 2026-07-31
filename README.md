@@ -272,12 +272,12 @@ dialect-specific configuration.
 
 ## Next Steps
 
-- [ ] Add automated tests (pytest), covering the base62 encoding logic
+- [x] Add automated tests (pytest), covering the base62 encoding logic
       and the URL creation flow
 - [ ] Implement duplicate URL checking before creation
-- [ ] Add a `GET /{short_code}/stats` endpoint, returning the URL's
+- [x] Add a `GET /{short_code}/stats` endpoint, returning the URL's
       data (including clicks) without triggering the redirect
 - [ ] Migrate the database to PostgreSQL for the production environment
-- [ ] Deploy the application (Render/Railway) with a public demo link
-- [ ] Add basic rate limiting to protect the creation endpoint against
+- [x] Deploy the application (Render) with a public demo link
+- [x] Add basic rate limiting to protect the creation endpoint against
       abuse and/or excessive use
