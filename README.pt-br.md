@@ -261,14 +261,14 @@ por exemplo, reservando o `id` antes da inserção completa, ou
 utilizando uma transação única com geração de código independente
 do autoincremento do banco.
 
-### Ausência de verificação de URLs duplicadas
+### ~~Ausência de verificação de URLs duplicadas~~
 
-Atualmente, o sistema não verifica se uma `original_url` já foi
+~~Atualmente, o sistema não verifica se uma `original_url` já foi
 encurtada anteriormente — cada chamada a `POST /shorten` sempre gera
 um novo registro e um novo código, mesmo que a URL de destino seja
 idêntica a uma já existente. Uma futura melhoria seria consultar o
 banco antes da criação e reaproveitar o código já gerado, quando
-aplicável.
+aplicável.~~
 
 ### Ambiente de banco de dados local
 
